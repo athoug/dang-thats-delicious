@@ -1,0 +1,36 @@
+//- we'll define how the mixin looks like and teh way to do it is by using the keyword `mixin` and give it a name
+//- just like how we use functions but instead of function we use teh keyword min=xin
+mixin storeFom(store={})
+  //- we'll add a form and give it an action of '/add' and the method is `post` 
+  //- this might be weird but because we're uploading photos we need to include the final attribute (enctype="multipart/form-data") we don't need it just yet but we will handel it later 
+  //- finally we add a class for styling
+  form(action=`/add/${store._id || ''}` method='POST' class="card" enctype='multipart/form-data')
+    //- we need to make sure the form asks for the data we need in the store model 
+    //- make sure the values of the name attributes of the form elements matches the ones in your schema
+    label(for="name") Name 
+    input(type="text" name="name" value=store.name)
+    label(for="description") Description 
+    textarea(name="description")=store.description
+    //- add file upload
+    label(for="photo") Photo 
+      input(type="file", name="photo" id="photo" accept="image/gif, image/png, image/jpg, image/jpeg")
+      if store.photo
+        img(src=`/uploads/${store.photo}`, alt=store.name, width=200)
+    //- address, lng and lat
+    label(for="address") Address
+    input(type="text" id="address" name="location[address]" value=(store.location && store.location.address)) 
+    label(for="lng") Address Lng 
+    input(type="text" id="lng" name="location[coordinates][0]" value=(store.location && store.location.coordinates[0]) required)
+    label(for="lat") Address Lat 
+    input(type="text" id="lat" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1]) required)
+    //- `-` means we are running javascript
+    - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
+    //- now we will take these variables and loop over them
+    - const tags = store.tags || []
+    ul.tags 
+      //- you loop in pug by using `each`
+      each choice in choices
+        .tag.tag__choice
+          input(type="checkbox", name="tags" id=choice value=choice checked=(tags.includes(choice))) 
+          label(for=choice) #{choice}
+    input(type="submit", value="Save ⟶" class="button")

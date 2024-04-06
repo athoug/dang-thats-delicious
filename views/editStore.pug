@@ -1,0 +1,10 @@
+extends layout 
+//- we now need to import the actual mixin we need  and we do that with `include` then `mixin/` followed by the mixins name
+include mixins/_storeForm 
+block content 
+  .inner
+    h2= title 
+    //- to use a mixin wwe use a `+` sign and then call it like wwe do a function
+    +storeFom(store)
+  
+  

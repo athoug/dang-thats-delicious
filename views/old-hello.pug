@@ -1,0 +1,55 @@
+//- pug works differently 
+//- the way we do the html structure is just give it the tag name and then the content inside of it like so 
+- const upDog = dog.toUpperCase()
+p hello! my dog's name is #{upDog}
+
+//- some basics when dealing with pug
+//- 1. you have a tag, a space, and then all your elements inside of it
+//- 2. if you wish to have nested elements then you write the tag and then indent one level and add the other tag
+div 
+  p Another element
+  span yooooo!
+//- 3. what if you want classes and IDs?
+//- simple, just tag in a .className to the element and #IdName just like css
+//- you can also have multiple
+.wrapper.ohnooooo 
+  p.highlight The div element disappeared... why?
+  span#red Not sure maybe divs are the default
+
+  //- 4. what about attributes? 
+  //- well you wrap in inside a parentheses
+  div 
+    img(src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/16/08/gettyimages-464163411.jpg?crop=1.0xw:1xh;center,top&resize=980:*" alt=`dog ${dog}` width="400")
+
+//- 5. if you want to but your content int their own line you can use a pipe |
+h2 
+  | Hello 
+  em How are you?
+
+//- the docs are helpful, we'll learn a couple of things such as 
+//- https://pugjs.org/api/getting-started.html
+//- looping
+//- logic
+//- advanced templateing 
+//-  mixins and much more 
+
+//- to get information into the template we have to pass an object in the routes file in the render method specifically 
+//- and then in the template you use #{} to interpolate the string and just add the variable name 
+//- to add variables into attributes just make sure to use the template string format 
+
+//- note that you can run any javascript inside of this:
+//- ideally you do all the work in the router file but if you have to then 
+//- you just need to use a - sign and then 
+
+//- this is all good, but chances are you want to divide your website into chunks and re-use it 
+//-  we do that by extending templates
+//-  we create what's called a layout and then we leave little holes in the layers for the content we want to pass in
+//- in our views file we see that wes already set up up with a layout file 
+
+//- when we look at the file we see that we 
+//- 1. need to pass in the page title and we used a helper function in there too 
+//- 2. he hocked up the styles and the favicon 
+//- 3. we see sections named block and those are the parts we can fill in. we put the content that we wish to show if nothing is passed in
+//-  if we scroll down all the way to block content what we can then do is 
+//- go back to our hello pug file (actually I'll make a new one)
+//- what we need to do is extend the layout and then put out content in that little piece 

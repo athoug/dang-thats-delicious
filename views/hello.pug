@@ -1,0 +1,8 @@
+//- 1. you must extend and reference the file you want to include
+extends layout 
+
+//- 2. you fill in the rest of your block 
+block content 
+  //- inside here we type everything we want for it
+  p Hello 
+  p sale ends in #{h.moment().endOf('day').fromNow()}
