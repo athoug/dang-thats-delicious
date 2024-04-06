@@ -6,9 +6,18 @@
 		"node": "18.17.0",
 		"npm": "10.x"
 	},
-	"now": {
-		"dotenv": "variables.env.now"
-	},
+	"builds": [
+		{
+			"src": "start.js",
+			"use": "@vercel/node"
+		}
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "start.js"
+		}
+	],
 	"scripts": {
 		"prod": "node ./start.js",
 		"build": "webpack",
