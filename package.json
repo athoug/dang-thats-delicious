@@ -8,20 +8,20 @@
 	},
 	"builds": [
 		{
-			"src": "start.js",
+			"src": "index.js",
 			"use": "@vercel/node"
 		}
 	],
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "start.js"
+			"dest": "index.js"
 		}
 	],
 	"scripts": {
-		"prod": "node ./start.js",
+		"prod": "node ./api/index.js",
 		"build": "webpack",
-		"watch": "nodemon ./start.js --ignore public/",
+		"watch": "nodemon ./api/index.js --ignore public/",
 		"dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
 		"assets": "webpack -w",
 		"sample": "node ./data/load-sample-data.js",
